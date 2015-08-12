@@ -3,7 +3,15 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="target"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="lib/antlr-4.5-complete.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/antlr-4.5-complete.jar" sourcepath="C:/java/src/antlr4-master">
+		<attributes>
+			<attribute name="javadoc_location" value="http://www.antlr.org/api/Java/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar" sourcepath="C:/java/src/commons-logging-1.2-src">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/java/lib/commons-logging-1.2/commons-logging-1.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
