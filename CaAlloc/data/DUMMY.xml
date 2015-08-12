@@ -1,0 +1,129 @@
+<!--comment-->
+<config>
+	<defaults>
+	</defaults>
+	<!-- 
+	The skip tag really just works as a comment tag by placing its contained test tags at a lower level.
+	-->
+<skip>
+	<test name="1">
+		<item name="USER"     value="DUMMY" />                     <!-- ACSLDO MISDES DUMMY-->
+		<item name="ANYVOL"   value="ACS000SYS024PRD304P3DB2A" />  <!--  -->
+		<item name="DATACLAS" value="DC8001" />                    <!-- DC9345 PVSAM -->
+		<item name="DD"       value="SORTWK01" />                  <!-- SYSIN X37IGN -->
+		<item name="DEVCLAS"  value="DISK" />                      <!-- TAPE -->
+		<item name="DSORG"    value="PS" />                        <!-- PO DA VS -->
+		<item name="DSN"      value="SYS1.AA" />                   <!-- Any place with a '*' replace with a 'A' -->
+		<item name="IFCAT"    value="Y" />                         <!-- 'N' -->
+		<item name="JOB"      value="DED715ED" />                  <!-- DED715ED ACSLD01D1 CICSIMPA -->
+		<item name="PGM"      value="IJKEFT01" />                  <!-- ADRDSSU, SIBBATCH, IEHINIT, TMSTPNIT, CAWK* -->
+		<item name="VAMENVIR" value="SPACE" />                     <!-- ALLOC -->
+	</test>
+	<test name="2">
+		<item name="USER" value="ACSLDO" />
+		<item name="ANYVOL" value="ACS000SYS024PRD304P3DB2A"/>
+		<item name="DATACLAS" value="DC8001" />                    <!-- DC9345 PVSAM -->
+		<item name="DD"       value="SORTWK01" />                  <!-- SYSIN X37IGN -->
+		<item name="DEVCLAS"  value="DISK" />                      <!-- TAPE -->
+		<item name="DSORG"    value="PS" />                        <!-- PO DA VS -->
+		<item name="DSN"      value="SYS1.AA" />                   <!-- Any place with a '*' replace with a 'A' -->
+		<item name="IFCAT"    value="Y" />                         <!-- 'N' -->
+		<item name="JOB"      value="CICSIMPA" />                  <!-- DED715ED ACSLD01D1 CICSIMPA -->
+		<item name="PGM"      value="IJKEFT01" />                  <!-- ADRDSSU, SIBBATCH, IEHINIT, TMSTPNIT, CAWK* -->
+		<item name="VAMENVIR" value="SPACE" />                     <!-- ALLOC -->
+	</test>
+	<test name="3 - DSORG FAIL">
+		<item name="USER" value="ACSLDO" />
+		<item name="ANYVOL" value="ACS000SYS024PRD304P3DB2A"/>
+		<item name="DATACLAS" value="DC8001" />                    <!-- DC9345 PVSAM -->
+		<item name="DD"       value="SORTWK01" />                  <!-- SYSIN X37IGN -->
+		<item name="DEVCLAS"  value="DISK" />                      <!-- TAPE -->
+		<item name="DSORG"    value="PO" />                        <!-- PO DA VS PS-->
+		<item name="DSN"      value="SYS1.AA" />                   <!-- Any place with a '*' replace with a 'A' -->
+		<item name="IFCAT"    value="Y" />                         <!-- 'N' -->
+		<item name="JOB"      value="DED715ED" />                  <!-- DED715ED ACSLD01D1 CICSIMPA -->
+		<item name="PGM"      value="IJKEFT01" />                  <!-- ADRDSSU, SIBBATCH, IEHINIT, TMSTPNIT, CAWK* -->
+		<item name="VAMENVIR" value="SPACE" />                     <!-- ALLOC -->
+	</test>
+	<test name="4 - DSORG PASS">
+		<item name="USER" value="ACSLDO" />
+		<item name="ANYVOL" value="ACS000SYS024PRD304P3DB2A"/>
+		<item name="DATACLAS" value="DC8001" />                    <!-- DC9345 PVSAM -->
+		<item name="DD"       value="SORTWK01" />                  <!-- SYSIN X37IGN -->
+		<item name="DEVCLAS"  value="DISK" />                      <!-- TAPE -->
+		<item name="DSORG"    value="PS" />                        <!-- PO DA VS PS-->
+		<item name="DSN"      value="SYS1.AA" />                   <!-- Any place with a '*' replace with a 'A' -->
+		<item name="IFCAT"    value="Y" />                         <!-- 'N' -->
+		<item name="JOB"      value="DED715ED" />                  <!-- DED715ED ACSLD01D1 CICSIMPA -->
+		<item name="PGM"      value="IJKEFT01" />                  <!-- ADRDSSU, SIBBATCH, IEHINIT, TMSTPNIT, CAWK* -->
+		<item name="VAMENVIR" value="SPACE" />                     <!-- ALLOC -->
+	</test>
+	<test name="5 - DDNAME PASS">
+		<item name="USER" value="ACSLDO" />
+		<item name="ANYVOL" value="ACS000SYS024PRD304P3DB2A"/>
+		<item name="DATACLAS" value="DC8001" />                    <!-- DC9345 PVSAM -->
+		<item name="DD"       value="SYSIN" />                     <!-- SORTWK01 SYSIN X37IGN -->
+		<item name="DEVCLAS"  value="DISK" />                      <!-- TAPE -->
+		<item name="DSORG"    value="PS" />                        <!-- PO DA VS PS-->
+		<item name="DSN"      value="SYS1.AA" />                   <!-- Any place with a '*' replace with a 'A' -->
+		<item name="IFCAT"    value="Y" />                         <!-- 'N' -->
+		<item name="JOB"      value="DED715ED" />                  <!-- DED715ED ACSLD01D1 CICSIMPA -->
+		<item name="PGM"      value="IJKEFT01" />                  <!-- ADRDSSU, SIBBATCH, IEHINIT, TMSTPNIT, CAWK* -->
+		<item name="VAMENVIR" value="SPACE" />                     <!-- ALLOC -->
+	</test>
+	
+	<test name="6 - FILENAME PASS">
+		<item name="USER" value="ACSLDO" />
+		<item name="ANYVOL" value="ACS000SYS024PRD304P3DB2A"/>
+		<item name="DATACLAS" value="DC8001" />                    <!-- DC9345 PVSAM -->
+		<item name="DD"       value="SYSIN" />                     <!-- SORTWK01 SYSIN X37IGN -->
+		<item name="DEVCLAS"  value="DISK" />                      <!-- TAPE -->
+		<item name="DSORG"    value="PS" />                        <!-- PO DA VS PS-->
+		<item name="DSN"      value="OOPS.TEST" />                  <!-- SYS1.AA Any place with a '*' replace with a 'A' -->
+		<item name="IFCAT"    value="Y" />                         <!-- 'N' -->
+		<item name="JOB"      value="DED715ED" />                  <!-- DED715ED ACSLD01D1 CICSIMPA -->
+		<item name="PGM"      value="IJKEFT01" />                  <!-- ADRDSSU, SIBBATCH, IEHINIT, TMSTPNIT, CAWK* -->
+		<item name="VAMENVIR" value="SPACE" />                     <!-- ALLOC -->
+	</test>
+	
+	<test name="7 - VOLUME PASS">
+		<item name="USER" value="ACSLDO" />
+		<item name="ANYVOL" value="ACS000SYS024PRD304P3DB2A"/>
+		<item name="DATACLAS" value="DC8001" />                    <!-- DC9345 PVSAM -->
+		<item name="DD"       value="SYSIN" />                     <!-- SORTWK01 SYSIN X37IGN -->
+		<item name="DEVCLAS"  value="DISK" />                      <!-- TAPE -->
+		<item name="DSORG"    value="PS" />                        <!-- PO DA VS PS-->
+		<item name="DSN"      value="OOPS.TEST" />                  <!-- SYS1.AA Any place with a '*' replace with a 'A' -->
+		<item name="IFCAT"    value="Y" />                         <!-- 'N' -->
+		<item name="JOB"      value="DED715ED" />                  <!-- DED715ED ACSLD01D1 CICSIMPA -->
+		<item name="PGM"      value="IJKEFT01" />                  <!-- ADRDSSU, SIBBATCH, IEHINIT, TMSTPNIT, CAWK* -->
+		<item name="VAMENVIR" value="SPACE" />                     <!-- ALLOC -->
+	</test>
+</skip>
+	
+	<test name="7 - DATACLAS PASS">
+		<item name="USER" value="ACSLDO" />
+		<item name="ANYVOL" value="ACS000SYS024PRD304P3DB2A"/>
+		<item name="DATACLAS" value="PVSAM" />                    <!-- DC8001 DC9345 PVSAM -->
+		<item name="DD"       value="SYSIN" />                     <!-- SORTWK01 SYSIN X37IGN -->
+		<item name="DEVCLAS"  value="DISK" />                      <!-- TAPE -->
+		<item name="DSORG"    value="PS" />                        <!-- PO DA VS PS-->
+		<item name="DSN"      value="OOPS.TEST" />                  <!-- SYS1.AA Any place with a '*' replace with a 'A' -->
+		<item name="IFCAT"    value="Y" />                         <!-- 'N' -->
+		<item name="JOB"      value="DED715ED" />                  <!-- DED715ED ACSLD01D1 CICSIMPA -->
+		<item name="PGM"      value="IJKEFT01" />                  <!-- ADRDSSU, SIBBATCH, IEHINIT, TMSTPNIT, CAWK* -->
+		<item name="VAMENVIR" value="SPACE" />                     <!-- ALLOC -->
+		
+		<item name="UNITMISMATCH" value="Y" />
+		<item name="SNC2RC"   value="0" type="INTEGER" />
+		<item name="EXTENTS"  value="4" type="INTEGER" />
+		<item name="BLKSIZE"  value="0" type="INTEGER" />
+		<item name="OPTBLK"   value="0" type="INTEGER" />
+		<item name="GUARANTEED_SPACE" value="Y" />                 <!-- Y N ? -->
+		<item name="LSPACE_RETURN_CODE"  value="0" type="INTEGER" /> <!-- 0..16 -->
+		<item name="SPACTYPE" value="CYL" />                 <!-- AVR BLK CYL TRK -->
+		<item name="SPACTYPED" value="CYL" />                 <!-- AVR BLK CYL TRK -->
+		<item name="SPACTYPEI" value="CYL" />                 <!-- AVR BLK CYL TRK -->
+	</test>
+	
+</config>
