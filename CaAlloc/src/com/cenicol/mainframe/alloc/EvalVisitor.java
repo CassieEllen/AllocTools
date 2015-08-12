@@ -5,26 +5,16 @@
 
 package com.cenicol.mainframe.alloc;
 
-import com.cenicol.antlr4.alloc.parser.*;
-
 import java.util.HashMap;
-//import java.util.List;
-//import java.util.Vector;
 import java.util.Map;
 
-
-
-
-
-
-
-
-//import org.antlr.v4.runtime.ParserRuleContext;
-//import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.cenicol.antlr4.alloc.parser.AllocBaseVisitor;
+import com.cenicol.antlr4.alloc.parser.AllocParser;
 
 /**
  * Implements Visitor for AllocParser
@@ -143,7 +133,7 @@ public class EvalVisitor extends AllocBaseVisitor<AllocValue> {
 		}
 		if(null == nextResult) {
 			if(aggregate.type != AllocValueType.LIST) {
-				AllocValue value = new AllocValue(AllocValueType.LIST, aggregate);
+				AllocValue value = new AllocValue(aggregate);
 				aggregate = value;
 			}
 			return aggregate;
@@ -153,7 +143,7 @@ public class EvalVisitor extends AllocBaseVisitor<AllocValue> {
 		if(aggregate.type == AllocValueType.LIST) {
 			value = aggregate;
 		} else {
-			value = new AllocValue(AllocValueType.LIST, aggregate);
+			value = new AllocValue(aggregate);
 		}
 		value.append(nextResult);
 		return value;
@@ -295,8 +285,9 @@ public class EvalVisitor extends AllocBaseVisitor<AllocValue> {
 	return null;
 }
 
-/*
+/**
  *
+ * @see com.cenicol.antlr4.alloc.parser.AllocBaseVisitor#visitList(com.cenicol.antlr4.alloc.parser.AllocParser.ListContext)
  */
 @Override public AllocValue visitList(AllocParser.ListContext ctx)
 {
@@ -304,11 +295,12 @@ public class EvalVisitor extends AllocBaseVisitor<AllocValue> {
 	return value;
 }
 
-/*
+/**
  *
+ * @see com.cenicol.antlr4.alloc.parser.AllocBaseVisitor#visitPathSTRING(com.cenicol.antlr4.alloc.parser.AllocParser.PathSTRINGContext)
  */
 @Override public AllocValue visitPathSTRING(AllocParser.PathSTRINGContext ctx) {
-	AllocValue value = new AllocValue(AllocValueType.STRING,ctx.STRING().getText());
+	AllocValue value = new AllocValue(ctx.STRING().getText());
 	//System.out.println("visitPathString:"+ value);
 	return value;
 }
@@ -320,7 +312,7 @@ public class EvalVisitor extends AllocBaseVisitor<AllocValue> {
  * {@link #visitChildren} on {@code ctx}.</p>
  */
 @Override public AllocValue visitPathGLOB(AllocParser.PathGLOBContext ctx) {
-	AllocValue value = new AllocValue(AllocValueType.GLOB, ctx.GLOB().getText());
+	AllocValue value = new AllocValue( new Glob(ctx.GLOB().getText()));
 	//System.out.println("visitPathGLOB:" + value);
 	return value;
 }
@@ -334,7 +326,7 @@ public class EvalVisitor extends AllocBaseVisitor<AllocValue> {
 @Override public AllocValue visitCopybook(AllocParser.CopybookContext ctx) {
 	String filename = ctx.STRING().getText();
 	System.out.print("COPYBOOK " + filename);
-	return new AllocValue(AllocValueType.STRING, filename);
+	return new AllocValue(filename);
 }
 
 /* ----------------------------------------------------------------------------- */
@@ -414,24 +406,31 @@ public class EvalVisitor extends AllocBaseVisitor<AllocValue> {
 	return value;
 }
 
-/** STRING */
+/** STRING
+ * 
+ * @see com.cenicol.antlr4.alloc.parser.AllocBaseVisitor#visitString(com.cenicol.antlr4.alloc.parser.AllocParser.StringContext)
+ */
 @Override public AllocValue visitString(AllocParser.StringContext ctx)
 {
 	String text = ctx.STRING().getText();
+	
+	// Remove single quotes
 	int endIndex = text.length() - 1;
 	text = text.substring(1, endIndex);
-	AllocValue value = new AllocValue(AllocValueType.STRING, text);
 	
-	// TODO uncomment
-	//value.write();
+	AllocValue value = new AllocValue(text);
+	
 	return value;
 }
 
+/** GLOB
+ * 
+ * @see com.cenicol.antlr4.alloc.parser.AllocBaseVisitor#visitGlob(com.cenicol.antlr4.alloc.parser.AllocParser.GlobContext)
+ */
 @Override public AllocValue visitGlob(AllocParser.GlobContext ctx)
 {
-	AllocValue value = new AllocValue(AllocValueType.GLOB, ctx.GLOB().getText());
-	// TODO uncomment
-	//value.write();
+	Glob g = new Glob(ctx.GLOB().getText());
+	AllocValue value = new AllocValue(g);
 	return value;
 }
 

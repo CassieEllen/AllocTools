@@ -4,14 +4,21 @@
 
 package com.cenicol.mainframe.alloc;
 
-import com.cenicol.antlr4.alloc.parser.*;
-import com.cenicol.antlr4.alloc.tools.TokenStreamStack;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
-
-
-
-
-//import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -25,24 +32,11 @@ import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.configuration.tree.ConfigurationNode;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory; 
-import org.apache.log4j.BasicConfigurator;
+import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.PropertyConfigurator;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.FileInputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import com.cenicol.antlr4.alloc.parser.AllocParser;
+import com.cenicol.antlr4.alloc.tools.TokenStreamStack;
 
 /**
  * <p><a href="http://logging.apache.org/log4j/1.2/manual.html">log4j manual</a></p>
@@ -253,7 +247,7 @@ public class CaAlloc {
 					String value = visitor.getValues().get(key);
 					System.out.println(key + "=" + value);
 					String name = "&" + key;
-					eval.setVar(name, new AllocValue(AllocValueType.STRING, value));
+					eval.setVar(name, new AllocValue(value));
 				}
 				CaAlloc.execScript(tree, eval);
 			}

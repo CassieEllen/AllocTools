@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
  * <p>CaAlloc values are {@link AllocValueType}</p>
  * <ul><li>{@link AllocValueType#BOOL BOOL}</li>
  * <li>{@link AllocValueType#INTEGER INTEGER}</li>
- * <li>{@link AllocValueType#STRING SRING}</li>
+ * <li>{@link AllocValueType#STRING STRING}</li>
  * <li>{@link AllocValueType#GLOB GLOB}</li>
  * <li>{@link AllocValueType#LIST LIST}</li>
  * <li>{@link AllocValueType#FILTLIST FILTLIST}</li></ul>
@@ -29,33 +29,38 @@ import org.apache.commons.logging.LogFactory;
 public class AllocValue
 {
 	/** value type {@link AllocValueType} */
-	AllocValueType type;
+	protected AllocValueType type;
 	
 	/** BOOL value {@link AllocValueType#BOOL} */
-	boolean b;              
+	protected boolean b;              
 	
 	/** INTEGER value */
-	int i;    
+	protected int i;    
 	
 	/** STRING value */
-	String s; 
+	protected String s; 
+	
+	/** GLOB value */
+	protected Glob g;
 	
 	/** LIST value */
-	List<AllocValue> l;
+	protected List<AllocValue> l;
 	
 	/** FILTLIST value */
-	Filtlist f;          
+	protected Filtlist f;          
 	
 	 /** ID name - set when an ID is replaced by it's value. */
-	String name;           
+	protected String name;           
 
+	/** Class logger */
 	private Log log = LogFactory.getLog(AllocValue.class);
 
 	//--------------------------------------------------------------------------
+	// Constructors
 	//--------------------------------------------------------------------------
 
 	/**
-	 * Ctor - creates an empty string instance. 
+	 * Default Constructor: create an empty string value. 
 	 */
 	AllocValue() {
 		log.trace("AllocValue()");
@@ -66,11 +71,11 @@ public class AllocValue
 	/**
 	 * Create a boolean variable.
 	 * 
-	 * @param v Assign value to v.
+	 * @param v Initial boolean value.
 	 */
 	AllocValue(boolean v)
 	{
-		log.trace("AllocValue()");
+		log.trace("AllocValue(boolean)");
 		type = AllocValueType.BOOL;
 		b = v;
 	}
@@ -78,48 +83,47 @@ public class AllocValue
 	/**
 	 * Create an integer value.
 	 * 
-	 * @param v Assign value to v.
+	 * @param v Initial integer value.
 	 */
 	AllocValue(int v) {
+		log.trace("AllocValue(int)");
 		type = AllocValueType.INTEGER;
 		i = v;
 	}
-
-	/**
-	 * Create a string or GLOB value.
+	
+	/** Create a string value.
 	 * 
-	 * @param typeOf Type of value being set. Must be an element from enum {@link AllocValueType}
-	 * @param v Assign value to v.
-	 * TODO break into two separate methods.
+	 * @param v Initial string value. 
 	 */
-	AllocValue(AllocValueType typeOf, String v)
+	AllocValue(String v)
 	{
-		log.trace("AllocValue()");
-		switch(typeOf) {
-		case STRING:
-			setString(v);
-			break;
-		case GLOB:
-			setGlob(v);
-			break;
-		default:
-			throw new RuntimeException("Invalid type: must be STRING or GLOB");
-		}
+		log.trace("AllocValue(String)");
+		setString(v);
+	}
+
+	/** Create a Glob value
+	 * 
+	 * @param v
+	 */
+	AllocValue(Glob v)
+	{
+		log.trace("AllocValue(Glob)");
+		setGlob(v);
 	}
 	
 	/**
 	 * @param typeOf
 	 * @param value
 	 */
-	AllocValue(AllocValueType typeOf, AllocValue value) {
-		log.trace("AllocValue()");
+	AllocValue(AllocValue value) {
+		log.trace("AllocValue(AllocValue)");
 		type = AllocValueType.LIST;
 		l = new Vector<AllocValue>();
 		l.add(value);
 	}
 	
 	/**
-	 * Appends a value to the value {@link AllocValue#l l}.
+	 * Appends a value to the value {@link #l l}.
 	 * 
 	 * @param value to be appended to the end of the list <i>l</i>.
 	 */
@@ -128,11 +132,12 @@ public class AllocValue
 	}
 
 	/**
-	 * Assigns a Filtlist to this value.
+	 * Instantiates AllocValue with a Filtlist.
 	 * 
 	 * @param f is assigned to {@link AllocValue#f f}
 	 */
 	AllocValue(Filtlist f) {
+		log.trace("AllocValue(Filtlist)");
 		type = AllocValueType.FILTLIST;
 		this.f = f;
 	}
@@ -174,8 +179,16 @@ public class AllocValue
 	void setGlob(String v)
 	{
 		type = AllocValueType.GLOB;
-		// CLEANUP GLOB
 		s = v;
+	}
+
+	/**
+	 * @param v
+	 */
+	void setGlob(Glob v)
+	{
+		type = AllocValueType.GLOB;
+		g = v;
 	}
 
 	/**

@@ -37,10 +37,22 @@ public class Glob {
 	static final Pattern globCharsPat = Pattern.compile(globChars);
 	
 	/**
-	 * Checks if <i>text</i> is matched by GLOB
+	 * Glob string
+	 */
+	String s = null;
+	
+	/**
+	 * Glob Pattern
+	 */
+	Pattern p = null;
+	
+	/**
+	 * Checks if <i>text</i> is found in <i>glob</i>
 	 * 
-	 * @param glob The GLOB to check against.
-	 * @param text The text string to check.
+	 * @param glob
+	 *            The GLOB to check against.
+	 * @param text
+	 *            The text string to be matched.
 	 * @return true if text is matched by glob.
 	 */
 	static boolean matches(String glob, String text) {
@@ -73,4 +85,21 @@ public class Glob {
 	static Pattern getStringPattern(String text) {
 		return Pattern.compile(text);
 	}
+	
+	public Glob(String s) {
+		this.s = s;
+		this.p = Glob.getGlobPattern(s);
+	}
+	
+	/**
+	 * Checks if <i>text</i> is found in this GLOB
+	 * 
+	 * @param text The text string to check.
+	 * @return true if text is matched by glob.
+	 */
+	public boolean matches(String text) {
+		Matcher m = p.matcher(text);
+		return m.find();
+	}
+	
 }

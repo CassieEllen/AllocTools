@@ -40,6 +40,9 @@ public class TestNodeVisitor implements ConfigurationNodeVisitor {
 		//System.out.println("\tB:" + node.getName() + "=" + node.getValue());
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.commons.configuration.tree.ConfigurationNodeVisitor#visitAfterChildren(org.apache.commons.configuration.tree.ConfigurationNode)
+	 */
 	@Override
 	public void visitAfterChildren(ConfigurationNode node) {
 		if(node.isAttribute()) {
@@ -49,6 +52,9 @@ public class TestNodeVisitor implements ConfigurationNodeVisitor {
 		assignValue();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.commons.configuration.tree.ConfigurationNodeVisitor#terminate()
+	 */
 	@Override
 	public boolean terminate() {
 		// TODO Auto-generated method stub

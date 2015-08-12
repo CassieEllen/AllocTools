@@ -2,6 +2,8 @@
  * 
  */
 /**
+ * Contains the interpreter classes for CaAlloc scripts. 
+ * 
  * @author Cassie Nicol
  *
  */
