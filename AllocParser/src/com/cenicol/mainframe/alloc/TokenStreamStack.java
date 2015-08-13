@@ -2,10 +2,8 @@
  * Author Cassie Nicol 
  */
 
-package com.cenicol.antlr4.alloc.tools;
+package com.cenicol.mainframe.alloc;
  
-import com.cenicol.antlr4.alloc.parser.*;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,6 +17,8 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.TokenSource;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.misc.Interval;
+
+import com.cenicol.antlr4.alloc.parser.AllocLexer;
 
 /**
  * TokenStackStream is a simpleton providing a Stack of TokenStream objects.
