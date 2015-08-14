@@ -23,7 +23,7 @@ import org.antlr.v4.runtime.misc.TestRig;
  */
 public class Test extends TestRig {
 
-	static String[] myArgs = {"com.cenicol.antlr4.alloc.parser.Alloc", "script", "-tokens", "data/test.txt"}; 
+	static String[] myArgs = {"com.cenicol.antlr4.alloc.parser.Alloc", "script", "-tokens", "test.txt"}; 
 	
 	/**
 	 * @param args Command line arguments
@@ -34,8 +34,8 @@ public class Test extends TestRig {
 		
 		showTokens = true;
 		
-//		showTokens = false;
-//		printTree = true;
+		showTokens = false;
+		printTree = true;
 		
 //		printTree = false;
 //		gui = true;

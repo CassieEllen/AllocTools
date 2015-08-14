@@ -31,13 +31,21 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	/**
 	 * 
 	 */
-	private static TokenStreamStack tss = new TokenStreamStack();
+	static TokenStreamStack tss = new TokenStreamStack();
 	
 	/**
 	 * The token stream stack. 
 	 */
 	private Stack<TokenStream> tokenStack = new Stack<TokenStream>();
 	
+	/**
+	 * Get the instance of TokenStreamStack.
+	 * @return the instance of TokenStackStream.
+	 */
+	public static TokenStreamStack instance() {
+		return tss;
+	}
+
 	/**
 	 * Default constructor.
 	 */
@@ -60,7 +68,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 		return tokenStack.peek();
 	}
 	
-	/* (non-Javadoc)
+	/** 
 	 * @see TokenStreamStackI#pushTS(java.lang.String)
 	 */
 	public void pushTS(String filename) {
@@ -117,16 +125,16 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 		return input;
 	}
 	
-//-----------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------
+	// Implementation of TokenStream
+	//-----------------------------------------------------------------------------
 	
 	/* (non-Javadoc)
 	 * @see org.antlr.v4.runtime.IntStream#LA(int)
 	 */
 	@Override
 	public int LA(int arg0) {
-		// TODO Auto-generated method stub
 		return top().LA(arg0);
-		//return 0;
 	}
 
 	/* (non-Javadoc)
@@ -134,7 +142,6 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public void consume() {
-		// TODO Auto-generated method stub
 		top().consume();
 	}
 
@@ -143,7 +150,6 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public String getSourceName() {
-		// TODO Auto-generated method stub
 		top().getSourceName();
 		return null;
 	}
@@ -153,9 +159,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public int index() {
-		// TODO Auto-generated method stub
 		return top().index();
-		//return 0;
 	}
 
 	/* (non-Javadoc)
@@ -163,9 +167,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public int mark() {
-		// TODO Auto-generated method stub
 		return top().mark();
-		//return 0;
 	}
 
 	/* (non-Javadoc)
@@ -173,7 +175,6 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public void release(int arg0) {
-		// TODO Auto-generated method stub
 		top().release(arg0);
 	}
 
@@ -182,7 +183,6 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public void seek(int arg0) {
-		// TODO Auto-generated method stub
 		top().seek(arg0);
 	}
 
@@ -191,9 +191,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
 		return top().size();
-		//return 0;
 	}
 
 	/* (non-Javadoc)
@@ -201,9 +199,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public Token LT(int arg0) {
-		// TODO Auto-generated method stub
 		return top().LT(arg0);
-		//return null;
 	}
 
 	/* (non-Javadoc)
@@ -211,9 +207,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public Token get(int arg0) {
-		// TODO Auto-generated method stub
 		return top().get(arg0);
-		//return null;
 	}
 
 	/* (non-Javadoc)
@@ -221,9 +215,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public String getText() {
-		// TODO Auto-generated method stub
 		return top().getText();
-		//return null;
 	}
 
 	/* (non-Javadoc)
@@ -231,9 +223,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public String getText(Interval arg0) {
-		// TODO Auto-generated method stub
 		return top().getText(arg0);
-		//return null;
 	}
 
 	/* (non-Javadoc)
@@ -241,9 +231,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public String getText(RuleContext arg0) {
-		// TODO Auto-generated method stub
 		return top().getText(arg0);
-		//return null;
 	}
 
 	/* (non-Javadoc)
@@ -251,9 +239,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public String getText(Token arg0, Token arg1) {
-		// TODO Auto-generated method stub
 		return top().getText(arg0, arg1);
-		//return null;
 	}
 
 	/* (non-Javadoc)
@@ -261,17 +247,7 @@ public class TokenStreamStack implements TokenStream, TokenStreamStackI {
 	 */
 	@Override
 	public TokenSource getTokenSource() {
-		// TODO Auto-generated method stub
 		return top().getTokenSource();
-		//return null;
-	}
-
-	/**
-	 * Get the instance of TokenStreamStack.
-	 * @return the instance of TokenStackStream.
-	 */
-	public static TokenStreamStack instance() {
-		return tss;
 	}
 
 

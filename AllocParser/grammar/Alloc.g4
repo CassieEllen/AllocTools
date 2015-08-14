@@ -10,23 +10,27 @@ grammar Alloc;            // Define a grammar called Hello
 @header {
 	package com.cenicol.antlr4.alloc.parser;
    
-   	import com.cenicol.antlr4.alloc.tools.*;
+   	//import com.cenicol.mainframe.alloc.*;
    
-    import org.apache.commons.logging.Log;
-	import org.apache.commons.logging.LogFactory; 
-    
+    //import org.apache.commons.logging.Log;
+	//import org.apache.commons.logging.LogFactory; 
 }
 
 /* ------------------------------------------------------------------------ */
 
-@lexer::members {
+@parser::members {
+    
+	//private Log log = LogFactory.getLog(AllocParser.class);	
+}
 
-	private Log log = LogFactory.getLog(AllocLexer.class);
+@lexer::members {
+    
+	//private Log log = LogFactory.getLog(AllocLexer.class);
 	
 	public Token nextToken() {
 		Token token = super.nextToken();
 		if(token.getType() == Token.EOF) {
-		    TokenStreamStack tss = TokenStreamStack.instance();
+		    com.cenicol.mainframe.alloc.TokenStreamStack tss = com.cenicol.mainframe.alloc.TokenStreamStack.instance();
 			if( tss.empty() ) {
 				return token;
 			}
@@ -76,9 +80,9 @@ copybook : 'COPYBOOK' STRING
 	Token t = $STRING;
 	String name = t.getText();
 	String filename = name.substring(1,name.length()-1) + ".txt";
-	//System.out.println("COPYBOOK " + $STRING.getText() );
-	//System.out.println(filename);
-	TokenStreamStack tss = (TokenStreamStack) _input;
+	//log.info("COPYBOOK " + $STRING.getText() );
+	System.out.println("\nCOPYBOOK " + filename);
+	com.cenicol.mainframe.alloc.TokenStreamStack tss = com.cenicol.mainframe.alloc.TokenStreamStack.instance();
 	tss.pushTS(filename);
 }
 ;

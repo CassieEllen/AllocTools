@@ -2,6 +2,8 @@
  * 
  */
 /**
+ * Contains tools to test the CaAlloc parser.
+ * 
  * @author Cassie Nicol
  *
  */
