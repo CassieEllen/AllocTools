@@ -36,7 +36,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.cenicol.antlr4.alloc.parser.AllocParser;
-import com.cenicol.antlr4.alloc.tools.TokenStreamStack;
 
 /**
  * <p><a href="http://logging.apache.org/log4j/1.2/manual.html">log4j manual</a></p>

@@ -7,20 +7,29 @@ import java.util.regex.Pattern;
 /**
  * 
  * 
- * <p>Patterns are formed by specifying non-blank characters. The patterns are delimited by blanks, 
-not quotes. Any ASR constant that is not numeric (that does not begin with digits 0 through 9), or a string (that is not contained within single quotation marks), is considered a pattern, even if it does not contain pattern-matching characters. A pattern without pattern-matching characters works like a string constant, but goes through a slightly longer code path.
-Patterns can contain the following special characters:</p>
-
-<dl>
-<dt>percent sign (%)</dt>
-  <dd>Takes the place of any single character during a comparison.</dd>
-<dt>single asterisk (*)</dt>
-  <dd>Takes the place of any number of characters (including 0) during a comparison.</dd>
-<dt>double asterisk (**)</dt>
-  <dd>Takes the place of any number of data set name nodes (including 0) during data set name comparisons.</dd>
-<dt>question mark (?)</dt>
-  <dd>Takes the place of any single numeric digit (in the range '0' through '9') during a comparison.</dd>
-</dl>
+ * <p>
+ * Patterns are formed by specifying non-blank characters. The patterns are
+ * delimited by blanks, not quotes. Any ASR constant that is not numeric (that
+ * does not begin with digits 0 through 9), or a string (that is not contained
+ * within single quotation marks), is considered a pattern, even if it does not
+ * contain pattern-matching characters. A pattern without pattern-matching
+ * characters works like a string constant, but goes through a slightly longer
+ * code path. Patterns can contain the following special characters:
+ * </p>
+ * 
+ * <dl>
+ * <dt>percent sign (%)</dt>
+ * <dd>Takes the place of any single character during a comparison.</dd>
+ * <dt>single asterisk (*)</dt>
+ * <dd>Takes the place of any number of characters (including 0) during a
+ * comparison.</dd>
+ * <dt>double asterisk (**)</dt>
+ * <dd>Takes the place of any number of data set name nodes (including 0) during
+ * data set name comparisons.</dd>
+ * <dt>question mark (?)</dt>
+ * <dd>Takes the place of any single numeric digit (in the range '0' through
+ * '9') during a comparison.</dd>
+ * </dl>
  *
  * @author Cassie Nicol
  *
@@ -39,12 +48,12 @@ public class Glob {
 	/**
 	 * Glob string
 	 */
-	String s = null;
+	protected String s = null;
 	
 	/**
 	 * Glob Pattern
 	 */
-	Pattern p = null;
+	protected Pattern p = null;
 	
 	/**
 	 * Checks if <i>text</i> is found in <i>glob</i>
@@ -62,9 +71,11 @@ public class Glob {
 	}
 	
 	/**
-	 * Converts a string containing GLOB characters into a regex Pattern. 
-	 * @param text The text string to convert
-	 * @return The regular expression Pattern. 
+	 * Converts a string containing GLOB characters into a regex Pattern.
+	 * 
+	 * @param text
+	 *            The text string to convert
+	 * @return The regular expression Pattern.
 	 */
 	static Pattern getGlobPattern(String text) {
 		Matcher m = globCharsPat.matcher(text);
@@ -78,14 +89,22 @@ public class Glob {
 		return Pattern.compile(value);
 	}
 	
-	/** Convert a string (without GLOB characters) to a regular expression Pattern.
-	 * @param text The text string to convert.
+	/**
+	 * Convert a string (without GLOB characters) to a regular expression
+	 * Pattern.
+	 * 
+	 * @param text
+	 *            The text string to convert.
 	 * @return The regular expression Pattern.
 	 */
 	static Pattern getStringPattern(String text) {
 		return Pattern.compile(text);
 	}
 	
+	/** Create a Glob from a string.
+	 * 
+	 * @param s String containing the Glob pattern.
+	 */
 	public Glob(String s) {
 		this.s = s;
 		this.p = Glob.getGlobPattern(s);
@@ -100,6 +119,11 @@ public class Glob {
 	public boolean matches(String text) {
 		Matcher m = p.matcher(text);
 		return m.find();
+	}
+	
+	public String toString() {
+		String v = this.p.toString();
+		return v;
 	}
 	
 }

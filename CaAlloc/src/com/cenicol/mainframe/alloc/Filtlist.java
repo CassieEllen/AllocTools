@@ -27,7 +27,7 @@ public class Filtlist {
 	List<Pattern> includePatterns = null;
 	List<Pattern> excludePatterns = null;
 
-	private Log log = LogFactory.getLog(AllocValue.class);
+	private Log log = LogFactory.getLog(Filtlist.class);
 
 
 	Filtlist(AllocValue include, AllocValue exclude)
